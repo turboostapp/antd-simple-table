@@ -1,6 +1,6 @@
 # antd-simple-table
 
-[![Build Status](https://img.shields.io/github/workflow/status/shadowolfapp/antd-simple-table/Node.js%20CI)](https://github.com/shadowolfapp/antd-simple-table/actions?query=workflow%3A%22Node.js+CI%22)
+[![Build Status](https://img.shields.io/github/workflow/status/shadowolfapp/antd-simple-table/Release)](https://github.com/shadowolfapp/antd-simple-table/actions?query=workflow%3A%22Release%22)
 [![Coverage Status](https://img.shields.io/codecov/c/github/shadowolfapp/antd-simple-table)](https://codecov.io/github/shadowolfapp/antd-simple-table)
 [![License](https://img.shields.io/npm/l/antd-simple-table)](https://www.npmjs.com/package/antd-simple-table)
 [![Version](https://img.shields.io/npm/v/antd-simple-table)](https://www.npmjs.com/package/antd-simple-table)
