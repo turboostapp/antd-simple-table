@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Peatechen/antd-simple-table.git"
+    "url": "git+https://github.com/shadowolfapp/antd-simple-table.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Peatechen/antd-simple-table/issues"
+    "url": "https://github.com/shadowolfapp/antd-simple-table/issues"
   },
-  "homepage": "https://github.com/Peatechen/antd-simple-table#readme",
+  "homepage": "https://github.com/shadowolfapp/antd-simple-table#readme",
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-info": "^5.3.18",
