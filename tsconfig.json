@@ -12,21 +12,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
-    // 此处设置为node,才能解析import xx from 'xx'
-    "moduleResolution": "node",
-    "paths": {
-      "*": [
-        "src/*",
-        "node_modules/*"
-      ]
-    }
+    "moduleResolution": "node"
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "rollup.config.js"
-  ]
+  "exclude": ["node_modules", "dist", "rollup.config.js"]
 }

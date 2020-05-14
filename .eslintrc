@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint/eslint-plugin", "simple-import-sort"],
+  "extends": [
+    "standard",
+    "standard-react",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint"
+  ],
+  "rules": {
+    "simple-import-sort/sort": "error",
+    "react/prop-types": "off"
+  }
+}

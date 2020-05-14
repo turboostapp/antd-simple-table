@@ -5,7 +5,7 @@ import React, { ReactElement, useRef } from "react";
 import { DropTargetMonitor, useDrag, useDrop } from "react-dnd";
 
 const ItemTypes = {
-  OPTION: "option"
+  OPTION: "option",
 };
 
 interface DndCheckboxProps extends CheckboxProps {
@@ -22,7 +22,7 @@ const DndCheckbox: React.FC<DndCheckboxProps> = ({
   children,
   index,
   value,
-  onHover
+  onHover,
 }): ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop({
@@ -60,14 +60,14 @@ const DndCheckbox: React.FC<DndCheckboxProps> = ({
 
       // eslint-disable-next-line no-param-reassign
       item.index = hoverIndex;
-    }
+    },
   });
 
   const [{ isDragging }, drag] = useDrag({
     item: { type: ItemTypes.OPTION, id: value, index },
     collect: (monitor): { [key: string]: boolean } => ({
-      isDragging: monitor.isDragging()
-    })
+      isDragging: monitor.isDragging(),
+    }),
   });
 
   const opacity = isDragging ? 0 : 1;

@@ -29,13 +29,7 @@ const ResizeableTitle = (props): ReactElement => {
   return (
     <Resizable
       draggableOpts={{ enableUserSelectHack: false }}
-      handle={
-        <StyledSpan
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        />
-      }
+      handle={<StyledSpan onClick={(event): void => event.stopPropagation()} />}
       height={0}
       minConstraints={[80, 0]}
       width={width}
