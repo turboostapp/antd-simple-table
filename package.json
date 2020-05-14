@@ -52,7 +52,9 @@
     "antd": "^4.2.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
+    "commitizen": "^4.1.2",
     "css-loader": "^3.5.3",
+    "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
@@ -64,18 +66,40 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
     "less": "^3.11.1",
-    "less-loader": "^4.0.5",
+    "less-loader": "^6.1.0",
+    "lint-staged": "^10.2.2",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "rollup": "^2.8.0",
+    "semantic-release": "^17.0.7",
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.4",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
-    "antd": "^4.2.0",
-    "react": "^16.13.1"
+    "antd": "^4.0.0",
+    "react": "^16.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "lint-staged": {
+    "*.{json,js,md}": [
+      "prettier --write"
+    ],
+    "*.js": [
+      "eslint --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
