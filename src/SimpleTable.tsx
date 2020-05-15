@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { Table } from "antd";
 import { TableProps } from "antd/lib/table";
 import { get } from "lodash";

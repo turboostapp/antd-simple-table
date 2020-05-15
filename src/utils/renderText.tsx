@@ -2,6 +2,8 @@ import { Tag } from "antd";
 import moment from "moment";
 import React from "react";
 
+import getTagColor from "./getTagColor";
+
 import { ValueType } from "../enums/ValueType";
 import {
   MoneyValueObjectType,
@@ -11,7 +13,6 @@ import {
   ValueObjectType,
 } from "../interfaces/ValueObjectType";
 import { ValueTypeFunction } from "../interfaces/ValueTypeFunction";
-import getTagColor from "./getTagColor";
 
 const renderTextByObject = <T, U>(
   text: string | number | React.ReactText[],
@@ -68,7 +69,7 @@ const renderTextByObject = <T, U>(
                 color={getTagColor(`${textItem}`)}
                 key={textItem}
                 style={{ marginBottom: 8, cursor: "pointer" }}
-                onClick={(): void => {
+                onClick={() => {
                   onClick([String(textItem), tagIndex], text, item, index);
                 }}
               >
@@ -89,6 +90,8 @@ const renderTextByObject = <T, U>(
 
 /**
  * 根据不同的类型来转化数值
+ * @param text
+ * @param valueType
  */
 const renderText = <T, U>(
   text: string | number | React.ReactText[],

@@ -19,7 +19,7 @@ export default function withResizable<T>(
           const { width } = col;
           return {
             width,
-            onResize: (event: Event, { size }): void => {
+            onResize: (event: Event, { size }) => {
               nextColumnSettings[index] = {
                 ...nextColumnSettings[index],
                 width: size.width,

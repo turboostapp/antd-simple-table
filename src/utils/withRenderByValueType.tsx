@@ -43,18 +43,16 @@ export default function withRenderByValueType<T>(
 ): SimpleColumnType<T>[] {
   return columns.map(
     (column): SimpleColumnType<T> => {
-      delete column.filters;
       if (column.valueType) {
         return {
           align: getAlign(column.valueType) ? "right" : "center",
           ...column,
-          sorter: false,
           render: (text, record, index): ReactNode => {
             return renderText(text, column.valueType, index, record);
           },
         };
       }
-      return { ...column, sorter: false };
+      return column;
     }
   );
 }
