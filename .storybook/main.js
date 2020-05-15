@@ -8,7 +8,14 @@ module.exports = {
       use: [
         "style-loader",
         "css-loader",
-        { loader: "less-loader", options: { javascriptEnabled: true } },
+        {
+          loader: "less-loader",
+          options: {
+            lessOptions: {
+              javascriptEnabled: true,
+            },
+          },
+        },
       ],
     });
 
