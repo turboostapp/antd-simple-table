@@ -1,0 +1,105 @@
+{
+  "name": "antd-simple-table",
+  "version": "0.0.0-development",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadowolfapp/antd-simple-table.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shadowolfapp/antd-simple-table/issues"
+  },
+  "homepage": "https://github.com/shadowolfapp/antd-simple-table#readme",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "/lib",
+    "/es",
+    "/dist"
+  ],
+  "scripts": {
+    "build": "father build && webpack",
+    "lint": "npm run lint-eslint && npm run lint:style && tsc --noEmit",
+    "lint-eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./**/src ./tests && npm run lint:style",
+    "lint:style": "stylelint --fix  \"src/**/*.less\"  --syntax less",
+    "prepublishOnly": "npm run test && npm run build && np --no-cleanup --yolo --no-publish",
+    "prettier": "prettier -c --write \"**/*\"",
+    "site": "dumi build && gh-pages -d ./dist",
+    "start": "dumi dev",
+    "test": "npm run lint && father test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ],
+  "dependencies": {
+    "@ant-design/icons": "^4.1.0",
+    "antd": "^4.1.5",
+    "classnames": "^2.2.6",
+    "dnd-core": "^10.0.2",
+    "file-saver": "^2.0.2",
+    "immutability-helper": "^3.0.2",
+    "moment": "^2.24.0",
+    "papaparse": "^5.2.0",
+    "react-dnd": "^10.0.2",
+    "react-dnd-html5-backend": "^10.0.2",
+    "react-resizable": "^1.10.1",
+    "react-use": "^15.1.0",
+    "styled-components": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/classnames": "^2.2.9",
+    "@types/enzyme": "^3.10.3",
+    "@types/file-saver": "^2.0.1",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.4",
+    "@types/papaparse": "^5.0.3",
+    "@types/react": "^16.9.34",
+    "@types/react-responsive": "^8.0.2",
+    "@types/styled-components": "^5.1.0",
+    "@umijs/babel-preset-umi": "^3.1.2",
+    "@umijs/fabric": "^2.0.0",
+    "babel-plugin-import": "^1.12.2",
+    "css-loader": "^3.5.3",
+    "dumi": "^1.0.20",
+    "enzyme": "^3.10.0",
+    "enzyme-to-json": "^3.4.3",
+    "eslint": "^6.8.0",
+    "father": "^2.29.3",
+    "husky": "^4.2.5",
+    "jsdom-global": "^3.0.2",
+    "less-loader": "^6.0.0",
+    "np": "^6.2.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
+    "react-github-btn": "^1.1.1",
+    "style-loader": "^1.2.1",
+    "stylelint": "^13.3.3",
+    "typescript": "^3.3.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "umi": "^3.1.2",
+    "umi-plugin-githubpages": "^2.0.1",
+    "umi-request": "^1.2.15",
+    "webpack-bundle-analyzer": "^3.7.0",
+    "webpack-cli": "^3.3.10"
+  },
+  "peerDependencies": {
+    "react": "16.x"
+  }
+}
