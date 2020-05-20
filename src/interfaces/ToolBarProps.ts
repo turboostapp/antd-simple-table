@@ -1,17 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import { ColumnSetting } from "../dto/ColumnSetting";
-import { TableSize } from "../enums/TableSize";
-import { SimpleColumnType } from "./SimpleColumnType";
-import { ToolBarOptions } from "./ToolBarOptions";
+import { ColumnSettingType } from './ColumnSettingType';
+import { TableSize } from '../enums/TableSize';
+import { SimpleColumnType } from './SimpleColumnType';
+import { ToolBarOptions } from './ToolBarOptions';
 
 export interface ToolBarProps<T> {
   columns: SimpleColumnType<T>[];
-  columnSettings: ColumnSetting[];
+  columnSettings: ColumnSettingType[];
   options?: ToolBarOptions;
   size?: TableSize;
   toolBarRender?: () => ReactNode[];
-  onColumnSettingsChange: (columnSettings: ColumnSetting[]) => void;
+  onColumnSettingsChange: (columnSettings: ColumnSettingType[]) => void;
   onDownload?: () => void;
   onRefresh?: () => void;
   onSizeChange: (size: TableSize) => void;

@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    "jsx": "react",
-    "declaration": true,
-    "removeComments": true,
-    "target": "es5",
+    "outDir": "dist",
+    "module": "esnext",
+    "target": "esnext",
     "sourceMap": true,
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node"
-  }
+    "baseUrl": ".",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
+  "include": ["./src"]
 }

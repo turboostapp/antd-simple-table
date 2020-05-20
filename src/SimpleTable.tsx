@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Table } from "antd";
 import { TableProps } from "antd/lib/table";
+import { saveAs } from "file-saver";
 import { get } from "lodash";
 import moment from "moment";
+import Papa from "papaparse";
 import React, { ReactElement, useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
-import XLSX from "xlsx";
 
 import ResizeableTitle from "./components/ResizeableTitle";
 import { ToolBar } from "./components/ToolBar";
@@ -120,10 +121,14 @@ export const SimpleTable = <T extends {}>({
       data.push(row);
     });
 
-    const book = XLSX.utils.book_new();
-    const sheet = XLSX.utils.json_to_sheet(data);
-    XLSX.utils.book_append_sheet(book, sheet);
-    XLSX.writeFile(book, `${moment().format("YYYY-MM-DD")}-${name || id}.xlsx`);
+    const blob = new Blob(
+      [new Uint8Array([0xef, 0xbb, 0xbf]), Papa.unparse(data)],
+      {
+        type: "text/csv;charset=utf-8",
+      }
+    );
+
+    saveAs(blob, `${moment().format("YYYY-MM-DD")}-${name || id}.csv`);
   }, [dataSource, id, interColumns, name]);
 
   return (

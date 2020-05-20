@@ -3,18 +3,18 @@ import {
   DownloadOutlined,
   SettingOutlined,
   SyncOutlined,
-} from "@ant-design/icons";
-import { Checkbox, Divider, Dropdown, Menu, Popover, Tooltip } from "antd";
-import update from "immutability-helper";
-import React, { ReactElement, useCallback, useMemo } from "react";
-import { DndProvider } from "react-dnd";
-import Backend from "react-dnd-html5-backend";
-import styled from "styled-components";
+} from '@ant-design/icons';
+import { Checkbox, Divider, Dropdown, Menu, Popover, Tooltip } from 'antd';
+import update from 'immutability-helper';
+import React, { ReactElement, useCallback, useMemo } from 'react';
+import { DndProvider } from 'react-dnd';
+import Backend from 'react-dnd-html5-backend';
+import styled from 'styled-components';
 
-import { ColumnSetting } from "../../dto/ColumnSetting";
-import { TableSize } from "../../enums/TableSize";
-import { ToolBarProps } from "../../interfaces/ToolBarProps";
-import DndCheckbox from "./DndCheckbox";
+import { ColumnSettingType } from '../../interfaces/ColumnSettingType';
+import { TableSize } from '../../enums/TableSize';
+import { ToolBarProps } from '../../interfaces/ToolBarProps';
+import DndCheckbox from './DndCheckbox';
 
 const StyledToolBar = styled.div`
   display: flex;
@@ -51,7 +51,7 @@ export const ToolBar = <T extends {}>({
       columnSettings
         .filter((columnSetting): boolean => !columnSetting.hidden)
         .map((columnSetting): string => `${columnSetting.key}`),
-    [columnSettings]
+    [columnSettings],
   );
 
   const handleHover = useCallback(
@@ -62,10 +62,10 @@ export const ToolBar = <T extends {}>({
             [dragIndex, 1],
             [hoverIndex, 0, columnSettings[dragIndex]],
           ],
-        })
+        }),
       );
     },
-    [columnSettings, onColumnSettingsChange]
+    [columnSettings, onColumnSettingsChange],
   );
 
   return (
@@ -77,7 +77,7 @@ export const ToolBar = <T extends {}>({
             <div key={index} style={{ marginRight: 8 }}>
               {action}
             </div>
-          )
+          ),
         )}
 
         {actions.length > 0 ? <Divider type="vertical" /> : null}
@@ -85,11 +85,7 @@ export const ToolBar = <T extends {}>({
         {options?.download ? (
           <div style={{ marginLeft: 8 }}>
             <Tooltip title="下载">
-              <DownloadOutlined
-                spin={false}
-                style={{ fontSize: 17 }}
-                onClick={onDownload}
-              />
+              <DownloadOutlined spin={false} style={{ fontSize: 17 }} onClick={onDownload} />
             </Tooltip>
           </div>
         ) : null}
@@ -98,15 +94,13 @@ export const ToolBar = <T extends {}>({
           <div style={{ marginLeft: 16 }}>
             <Dropdown
               overlay={
-                <Menu
-                  onClick={({ key }): void => onSizeChange(key as TableSize)}
-                >
+                <Menu onClick={({ key }): void => onSizeChange(key as TableSize)}>
                   <Menu.Item key={TableSize.LARGE}>默认</Menu.Item>
                   <Menu.Item key={TableSize.MIDDLE}>中等</Menu.Item>
                   <Menu.Item key={TableSize.SMALL}>紧凑</Menu.Item>
                 </Menu>
               }
-              trigger={["click"]}
+              trigger={['click']}
             >
               <Tooltip title="尺寸">
                 <ColumnHeightOutlined style={{ fontSize: 16 }} />
@@ -118,11 +112,7 @@ export const ToolBar = <T extends {}>({
         {options?.reload ? (
           <div style={{ marginLeft: 16 }}>
             <Tooltip title="刷新">
-              <SyncOutlined
-                spin={false}
-                style={{ fontSize: 16 }}
-                onClick={onRefresh}
-              />
+              <SyncOutlined spin={false} style={{ fontSize: 16 }} onClick={onRefresh} />
             </Tooltip>
           </div>
         ) : null}
@@ -137,11 +127,11 @@ export const ToolBar = <T extends {}>({
                     onChange={(value): void => {
                       onColumnSettingsChange(
                         columnSettings.map(
-                          (columnSetting): ColumnSetting => ({
+                          (columnSetting): ColumnSettingType => ({
                             ...columnSetting,
                             hidden: value.indexOf(`${columnSetting.key}`) < 0,
-                          })
-                        )
+                          }),
+                        ),
                       );
                     }}
                   >
@@ -154,13 +144,9 @@ export const ToolBar = <T extends {}>({
                             value={item.key}
                             onHover={handleHover}
                           >
-                            {
-                              columns.find(
-                                (column): boolean => column.key === item.key
-                              )?.title
-                            }
+                            {columns.find((column): boolean => column.key === item.key)?.title}
                           </DndCheckbox>
-                        )
+                        ),
                       )}
                     </DndProvider>
                   </Checkbox.Group>

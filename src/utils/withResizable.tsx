@@ -1,12 +1,12 @@
-import { ColumnType } from "antd/lib/table";
+import { ColumnType } from 'antd/lib/table';
 
-import { ColumnSetting } from "../dto/ColumnSetting";
-import { SimpleColumnType } from "../interfaces/SimpleColumnType";
+import { ColumnSettingType } from '../interfaces/ColumnSettingType';
+import { SimpleColumnType } from '../interfaces/SimpleColumnType';
 
 export default function withResizable<T>(
   columns: SimpleColumnType<T>[],
-  columnSettings: ColumnSetting[],
-  setColumnSettings: (columnSettings: ColumnSetting[]) => void
+  columnSettings: ColumnSettingType[],
+  setColumnSettings: (columnSettings: ColumnSettingType[]) => void,
 ): SimpleColumnType<T>[] {
   const nextColumnSettings = [...columnSettings];
 
@@ -29,6 +29,6 @@ export default function withResizable<T>(
           };
         },
       };
-    }
+    },
   );
 }
