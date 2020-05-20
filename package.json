@@ -2,8 +2,8 @@
   "name": "antd-simple-table",
   "version": "0.0.0-development",
   "description": "",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc --emitDeclarationOnly && babel src --out-dir dist --extensions \".ts,.tsx\"",
     "dev": "tsc -w",
