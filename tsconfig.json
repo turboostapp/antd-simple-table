@@ -7,12 +7,10 @@
     "target": "es5",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
     "moduleResolution": "node"
-  },
-  "exclude": ["node_modules", "dist", "rollup.config.js"]
+  }
 }
