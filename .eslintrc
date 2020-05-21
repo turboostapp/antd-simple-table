@@ -3,19 +3,21 @@
     "browser": true,
     "jest": true
   },
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint/eslint-plugin", "simple-import-sort"],
   "extends": [
-    "standard",
+    "standard-with-typescript",
     "standard-react",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
     "prettier",
     "prettier/react",
     "prettier/@typescript-eslint"
   ],
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
+  "plugins": ["react-hooks", "simple-import-sort"],
   "rules": {
-    "simple-import-sort/sort": "error",
-    "react/prop-types": "off"
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react/prop-types": "off",
+    "simple-import-sort/sort": "error"
   }
 }
