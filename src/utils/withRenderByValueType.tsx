@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { get } from "lodash";
+import get from "lodash/get";
 import { ReactNode } from "react";
 
 import { ValueType } from "../enums/ValueType";

@@ -2,7 +2,7 @@
 import { Table } from "antd";
 import { TableProps } from "antd/lib/table";
 import { saveAs } from "file-saver";
-import { get } from "lodash";
+import get from "lodash/get";
 import moment from "moment";
 import Papa from "papaparse";
 import React, { ReactElement, useCallback, useMemo, useState } from "react";
