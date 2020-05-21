@@ -6,9 +6,10 @@
   "extends": [
     "standard-with-typescript",
     "standard-react",
-    "prettier",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
     "prettier/react",
-    "prettier/@typescript-eslint"
+    "prettier/standard"
   ],
   "parserOptions": {
     "project": "tsconfig.json"
