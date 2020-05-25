@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "esNext",
-    "target": "esNext",
+    "target": "es5",
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
@@ -19,8 +19,7 @@
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
-    "typeRoots": ["node_modules/@types", "./globals.d.ts"]
+    "typeRoots": ["node_modules/@types", "../globals.d.ts"]
   },
-  "include": ["./src"],
   "exclude": ["node_modules"]
 }
