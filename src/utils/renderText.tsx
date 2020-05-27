@@ -38,10 +38,11 @@ const renderTextByObject = <T, U>(
     }
 
     case ValueType.MONEY: {
-      const { currency, useGrouping = true } = value as MoneyValueObjectType;
+      const { currency, useGrouping = true } = value as MoneyValueObjectType<T>;
       return new Intl.NumberFormat(window.navigator.language, {
         style: "currency",
-        currency,
+        currency:
+          typeof currency === "string" ? currency : currency(text, item, index),
         useGrouping,
       }).format(Number(text));
     }

@@ -1,5 +1,5 @@
 import { ValueType } from "../enums/ValueType";
-
+import { CurrencyType } from "./CurrencyType";
 export interface BaseValueObjectType {
   type: ValueType;
 }
@@ -17,9 +17,9 @@ export interface NumberValueObjectType {
   precision?: number;
 }
 
-export interface MoneyValueObjectType {
+export interface MoneyValueObjectType<T> {
   type: ValueType.MONEY;
-  currency: string;
+  currency: CurrencyType<T>;
   useGrouping?: boolean;
 }
 
@@ -37,5 +37,5 @@ export type ValueObjectType<T> =
   | NumberValueObjectType
   | PercentValueObjectType
   | BaseValueObjectType
-  | MoneyValueObjectType
+  | MoneyValueObjectType<T>
   | TagValueObjectType<T>;
