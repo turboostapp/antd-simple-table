@@ -1,9 +1,7 @@
 import React from "react";
 import { withInfo } from "@storybook/addon-info";
 import { storiesOf } from "@storybook/react";
-// import readme from "./test.md";
 import { SimpleTable, ValueType } from "../src";
-// import { addReadme } from "storybook-readme";
 const stories = storiesOf("Table1", module);
 
 stories.addDecorator(withInfo);
@@ -15,7 +13,6 @@ stories.addParameters({
 });
 
 stories.add("base", () => (
-  // <h1>嘿嘿嘿</h1>
   <SimpleTable
     id="as"
     columns={[
