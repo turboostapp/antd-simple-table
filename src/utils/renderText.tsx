@@ -88,14 +88,14 @@ const renderTextByObject = <T, U>(
     case ValueType.SWITCH: {
       const {
         loading = false,
-        disable = false,
+        disabled = false,
         onChange = () => {},
       } = value as SwitchValueObjectType<T>;
       return (
         <Switch
           defaultChecked={text === true}
           loading={loading}
-          disabled={disable}
+          disabled={disabled}
           onChange={(checked: boolean) => {
             onChange(checked, text, item, index);
           }}

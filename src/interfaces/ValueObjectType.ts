@@ -26,7 +26,7 @@ export interface SwitchValueObjectType<T> {
     index?: number
   ) => void;
   loading?: boolean;
-  disable?: boolean;
+  disabled?: boolean;
 }
 
 export interface MoneyValueObjectType<T> {
