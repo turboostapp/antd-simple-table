@@ -21,7 +21,7 @@ export interface SwitchValueObjectType<T> {
   type: ValueType.SWITCH;
   onChange?: (
     checked: boolean,
-    value?: string | number | boolean | React.ReactText[],
+    value?: any,
     record?: T,
     index?: number
   ) => void;
@@ -39,7 +39,7 @@ export interface TagValueObjectType<T> {
   type: ValueType.TAG;
   onClick?: (
     tag: [string, number],
-    value: string | number | boolean | React.ReactText[],
+    value: any,
     record: T,
     index: number
   ) => void;

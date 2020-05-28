@@ -16,7 +16,7 @@ import {
 import { ValueTypeFunction } from "../interfaces/ValueTypeFunction";
 
 const renderTextByObject = <T, U>(
-  text: string | number | boolean | React.ReactText[],
+  text: any,
   value: ValueObjectType<T>,
   index: number,
   item?: T
@@ -114,7 +114,7 @@ const renderTextByObject = <T, U>(
  * @param valueType
  */
 const renderText = <T, U>(
-  text: string | number | React.ReactText[],
+  text: any,
   valueType: ValueType | ValueTypeFunction<T> | ValueObjectType<T>,
   index: number,
   item?: T

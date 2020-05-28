@@ -1,5 +1,5 @@
 export type CurrencyTypeFunction<T> = (
-  value?: string | number | boolean | React.ReactText[],
+  value?: any,
   record?: T,
   index?: number
 ) => string;
