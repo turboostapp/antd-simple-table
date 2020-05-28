@@ -1,4 +1,4 @@
-import { Tag } from "antd";
+import { Tag, Switch } from "antd";
 import moment from "moment";
 import React from "react";
 
@@ -11,11 +11,12 @@ import {
   PercentValueObjectType,
   TagValueObjectType,
   ValueObjectType,
+  SwitchValueObjectType,
 } from "../interfaces/ValueObjectType";
 import { ValueTypeFunction } from "../interfaces/ValueTypeFunction";
 
 const renderTextByObject = <T, U>(
-  text: string | number | React.ReactText[],
+  text: string | number | boolean | React.ReactText[],
   value: ValueObjectType<T>,
   index: number,
   item?: T
@@ -82,6 +83,24 @@ const renderTextByObject = <T, U>(
         });
       }
       return null;
+    }
+
+    case ValueType.SWITCH: {
+      const {
+        loading = false,
+        disable = false,
+        onChange = () => {},
+      } = value as SwitchValueObjectType<T>;
+      return (
+        <Switch
+          defaultChecked={text === true}
+          loading={loading}
+          disabled={disable}
+          onChange={(checked: boolean) => {
+            onChange(checked, text, item, index);
+          }}
+        />
+      );
     }
 
     default:

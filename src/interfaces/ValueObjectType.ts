@@ -17,6 +17,18 @@ export interface NumberValueObjectType {
   precision?: number;
 }
 
+export interface SwitchValueObjectType<T> {
+  type: ValueType.SWITCH;
+  onChange?: (
+    checked: boolean,
+    value?: string | number | boolean | React.ReactText[],
+    record?: T,
+    index?: number
+  ) => void;
+  loading?: boolean;
+  disable?: boolean;
+}
+
 export interface MoneyValueObjectType<T> {
   type: ValueType.MONEY;
   currency: CurrencyType<T>;
@@ -27,7 +39,7 @@ export interface TagValueObjectType<T> {
   type: ValueType.TAG;
   onClick?: (
     tag: [string, number],
-    value: string | number | React.ReactText[],
+    value: string | number | boolean | React.ReactText[],
     record: T,
     index: number
   ) => void;
@@ -38,4 +50,5 @@ export type ValueObjectType<T> =
   | PercentValueObjectType
   | BaseValueObjectType
   | MoneyValueObjectType<T>
-  | TagValueObjectType<T>;
+  | TagValueObjectType<T>
+  | SwitchValueObjectType<T>;

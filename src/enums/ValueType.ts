@@ -9,4 +9,5 @@ export enum ValueType {
   PERCENT = "percent",
   NUMBER = "number",
   TAG = "tag",
+  SWITCH = "switch",
 }
