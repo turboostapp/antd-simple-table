@@ -1,4 +1,4 @@
-import { Tag } from "antd";
+import { Tag, Switch } from "antd";
 import moment from "moment";
 import React from "react";
 
@@ -11,11 +11,12 @@ import {
   PercentValueObjectType,
   TagValueObjectType,
   ValueObjectType,
+  SwitchValueObjectType,
 } from "../interfaces/ValueObjectType";
 import { ValueTypeFunction } from "../interfaces/ValueTypeFunction";
 
 const renderTextByObject = <T, U>(
-  text: string | number | React.ReactText[],
+  text: any,
   value: ValueObjectType<T>,
   index: number,
   item?: T
@@ -38,10 +39,11 @@ const renderTextByObject = <T, U>(
     }
 
     case ValueType.MONEY: {
-      const { currency, useGrouping = true } = value as MoneyValueObjectType;
+      const { currency, useGrouping = true } = value as MoneyValueObjectType<T>;
       return new Intl.NumberFormat(window.navigator.language, {
         style: "currency",
-        currency,
+        currency:
+          typeof currency === "string" ? currency : currency(text, item, index),
         useGrouping,
       }).format(Number(text));
     }
@@ -83,6 +85,24 @@ const renderTextByObject = <T, U>(
       return null;
     }
 
+    case ValueType.SWITCH: {
+      const {
+        loading = false,
+        disabled = false,
+        onChange = () => {},
+      } = value as SwitchValueObjectType<T>;
+      return (
+        <Switch
+          defaultChecked={text === true}
+          loading={loading}
+          disabled={disabled}
+          onChange={(checked: boolean) => {
+            onChange(checked, text, item, index);
+          }}
+        />
+      );
+    }
+
     default:
       return text;
   }
@@ -94,7 +114,7 @@ const renderTextByObject = <T, U>(
  * @param valueType
  */
 const renderText = <T, U>(
-  text: string | number | React.ReactText[],
+  text: any,
   valueType: ValueType | ValueTypeFunction<T> | ValueObjectType<T>,
   index: number,
   item?: T

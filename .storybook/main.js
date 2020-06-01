@@ -20,7 +20,7 @@ module.exports = {
     });
 
     config.module.rules.push({
-      test: /\.tsx$/,
+      test: /\.(ts|tsx)$/,
       use: [
         {
           loader: require.resolve("ts-loader"),
