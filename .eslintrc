@@ -4,8 +4,9 @@
     "jest": true
   },
   "extends": [
-    "standard-with-typescript",
+    "standard",
     "standard-react",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint",
     "prettier/react",
