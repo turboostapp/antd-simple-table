@@ -1,19 +1,18 @@
-import { Tag, Switch } from "antd";
+import { Switch, Tag } from "antd";
 import moment from "moment";
 import React from "react";
-
-import getTagColor from "./getTagColor";
 
 import { ValueType } from "../enums/ValueType";
 import {
   MoneyValueObjectType,
   NumberValueObjectType,
   PercentValueObjectType,
+  SwitchValueObjectType,
   TagValueObjectType,
   ValueObjectType,
-  SwitchValueObjectType,
 } from "../interfaces/ValueObjectType";
 import { ValueTypeFunction } from "../interfaces/ValueTypeFunction";
+import getTagColor from "./getTagColor";
 
 const renderTextByObject = <T, U>(
   text: any,
@@ -89,6 +88,7 @@ const renderTextByObject = <T, U>(
       const {
         loading = false,
         disabled = false,
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         onChange = () => {},
       } = value as SwitchValueObjectType<T>;
       return (
@@ -96,8 +96,8 @@ const renderTextByObject = <T, U>(
           defaultChecked={text === true}
           loading={loading}
           disabled={disabled}
-          onChange={(checked: boolean) => {
-            onChange(checked, text, item, index);
+          onChange={(value: boolean) => {
+            onChange(value, item, index);
           }}
         />
       );

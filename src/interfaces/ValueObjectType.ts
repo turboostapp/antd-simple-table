@@ -19,12 +19,7 @@ export interface NumberValueObjectType {
 
 export interface SwitchValueObjectType<T> {
   type: ValueType.SWITCH;
-  onChange?: (
-    checked: boolean,
-    value?: any,
-    record?: T,
-    index?: number
-  ) => void;
+  onChange?: (value: boolean, record?: T, index?: number) => void;
   loading?: boolean;
   disabled?: boolean;
 }
