@@ -88,6 +88,7 @@ const renderTextByObject = <T, U>(
       const {
         loading = false,
         disabled = false,
+        size = "default",
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         onChange = () => {},
       } = value as SwitchValueObjectType<T>;
@@ -95,6 +96,7 @@ const renderTextByObject = <T, U>(
         <Switch
           defaultChecked={text === true}
           loading={loading}
+          size={size}
           disabled={disabled}
           onChange={(value: boolean) => {
             onChange(value, item, index);
