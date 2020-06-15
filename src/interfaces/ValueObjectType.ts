@@ -1,3 +1,5 @@
+import { SwitchSize } from "antd/lib/switch";
+
 import { ValueType } from "../enums/ValueType";
 import { CurrencyType } from "./CurrencyType";
 export interface BaseValueObjectType {
@@ -21,6 +23,7 @@ export interface SwitchValueObjectType<T> {
   type: ValueType.SWITCH;
   onChange?: (value: boolean, record?: T, index?: number) => void;
   loading?: boolean;
+  size?: SwitchSize;
   disabled?: boolean;
 }
 
