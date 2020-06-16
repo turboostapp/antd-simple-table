@@ -33,7 +33,7 @@ export function useColumnSettingsStorage<T>(
           (column): ColumnSettingType => ({
             key: column.key.toString(),
             hidden: !!column.hidden,
-            width: Number(column.width || 100),
+            width: Number(column.width || 140),
           })
         ),
       ],
