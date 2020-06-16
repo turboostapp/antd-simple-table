@@ -25,6 +25,7 @@ import withResizable from "./utils/withResizable";
 const StyledSimpleTable = styled.div`
   .ant-table-content table {
     table-layout: fixed !important;
+    margin: -10px !important;
   }
 `;
 

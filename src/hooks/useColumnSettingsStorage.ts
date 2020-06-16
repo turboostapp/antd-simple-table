@@ -1,18 +1,25 @@
-import { debounce, uniqBy } from 'lodash';
-import { useLocalStorage } from 'react-use';
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react';
+import { debounce, uniqBy } from "lodash";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { useLocalStorage } from "react-use";
 
-import { ColumnSettingType } from '../interfaces/ColumnSettingType';
-import { SimpleColumnType } from '../interfaces/SimpleColumnType';
+import { ColumnSettingType } from "../interfaces/ColumnSettingType";
+import { SimpleColumnType } from "../interfaces/SimpleColumnType";
 
 const saveToStorage = debounce(
   (key, value) => localStorage.setItem(key, JSON.stringify(value)),
-  1000,
+  1000
 );
 
 export function useColumnSettingsStorage<T>(
   id: string,
-  columns: SimpleColumnType<T>[],
+  columns: SimpleColumnType<T>[]
 ): [ColumnSettingType[], Dispatch<SetStateAction<ColumnSettingType[]>>] {
   const key = useMemo((): string => `simple-table:column-settings:${id}`, [id]);
 
@@ -26,16 +33,16 @@ export function useColumnSettingsStorage<T>(
           (column): ColumnSettingType => ({
             key: column.key.toString(),
             hidden: !!column.hidden,
-            width: Number(column.width),
-          }),
+            width: Number(column.width || 100),
+          })
         ),
       ],
-      'key',
+      "key"
     ).filter(
       (columnSetting): boolean =>
-        !!columns.find((column): boolean => column.key === columnSetting.key),
+        !!columns.find((column): boolean => column.key === columnSetting.key)
     );
-  }, [columns, key]);
+  }, [columns, value]);
 
   const [state, setState] = useState<ColumnSettingType[]>(columnSettings);
 
@@ -50,7 +57,7 @@ export function useColumnSettingsStorage<T>(
         saveToStorage(key, value);
         return setState(value);
       },
-      [key],
+      [key]
     ),
   ];
 }
