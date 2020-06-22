@@ -4,12 +4,22 @@
     "module": "esnext",
     "target": "esnext",
     "sourceMap": true,
-    "baseUrl": ".",
+    "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
+    "rootDirs": ["src", "stories"],
+    "baseUrl": "src",
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true
   },
-  "include": ["./src"]
+  "include": ["./src", "./stories"],
+  "exclude": ["node_modules"]
 }
