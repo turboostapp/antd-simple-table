@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledSpan = styled.span`
   position: absolute;
   z-index: 1;
-  right: -5px;
+  right: 0;
   bottom: 0;
 
   width: 10px;
@@ -16,6 +16,9 @@ const StyledSpan = styled.span`
 
 const StyledTh = styled.th`
   user-select: none;
+  &:hover {
+    background-color: #f2f2f2;
+  }
 `;
 
 const ResizeableTitle = (props): ReactElement => {
@@ -23,7 +26,7 @@ const ResizeableTitle = (props): ReactElement => {
 
   if (!width) {
     // eslint-disable-next-line react/jsx-props-no-spreading
-    return <th {...restProps} />;
+    return <StyledTh {...restProps} />;
   }
 
   return (

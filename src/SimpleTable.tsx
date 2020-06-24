@@ -17,6 +17,7 @@ import { ToolBarOptions } from "./interfaces/ToolBarOptions";
 import { ToolBarProps } from "./interfaces/ToolBarProps";
 import withColumnSettings from "./utils/withColumnSettings";
 import withCopyable from "./utils/withCopyable";
+import withDeleteColumnWidth from "./utils/withDeleteColumnWidth";
 import withEllipsis from "./utils/withEllipsis";
 import withHidden from "./utils/withHidden";
 import withRenderByValueType from "./utils/withRenderByValueType";
@@ -24,7 +25,9 @@ import withResizable from "./utils/withResizable";
 
 const StyledSimpleTable = styled.div`
   .ant-table-content table {
-    table-layout: fixed !important;
+    table-layout: auto !important;
+    width: max-content !important;
+    min-width: 100%;
   }
 `;
 
@@ -68,6 +71,7 @@ export const SimpleTable = <T extends {}>({
     tempColumns = withColumnSettings(tempColumns, columnSettings);
     tempColumns = withResizable(tempColumns, columnSettings, setColumnSettings);
     tempColumns = withHidden(tempColumns);
+    tempColumns = withDeleteColumnWidth(tempColumns);
     tempColumns = withRenderByValueType(tempColumns);
 
     tempColumns = withCopyable(tempColumns);
@@ -75,11 +79,6 @@ export const SimpleTable = <T extends {}>({
 
     return tempColumns;
   }, [columns, columnSettings, setColumnSettings]);
-
-  const x = useMemo(
-    () => interColumns.reduce((width, col) => width + (col.width || 0), 0),
-    [interColumns]
-  );
 
   const components = useMemo(
     () => ({
@@ -152,7 +151,7 @@ export const SimpleTable = <T extends {}>({
         dataSource={dataSource}
         loading={loading}
         pagination={pagination}
-        scroll={{ x }}
+        scroll={{ x: "max-content" }}
         size={size}
       />
     </StyledSimpleTable>

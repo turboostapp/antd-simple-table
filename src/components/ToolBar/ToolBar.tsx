@@ -3,18 +3,19 @@ import {
   DownloadOutlined,
   SettingOutlined,
   SyncOutlined,
-} from '@ant-design/icons';
-import { Checkbox, Divider, Dropdown, Menu, Popover, Tooltip } from 'antd';
-import update from 'immutability-helper';
-import React, { ReactElement, useCallback, useMemo } from 'react';
-import { DndProvider } from 'react-dnd';
-import Backend from 'react-dnd-html5-backend';
-import styled from 'styled-components';
+} from "@ant-design/icons";
+import { Checkbox, Divider, Dropdown, Menu, Popover, Tooltip } from "antd";
+import update from "immutability-helper";
+import React, { ReactElement, useCallback, useMemo } from "react";
+import { DndProvider } from "react-dnd";
+import Backend from "react-dnd-html5-backend";
+import styled from "styled-components";
 
-import { ColumnSettingType } from '../../interfaces/ColumnSettingType';
-import { TableSize } from '../../enums/TableSize';
-import { ToolBarProps } from '../../interfaces/ToolBarProps';
-import DndCheckbox from './DndCheckbox';
+import { TableSize } from "../../enums/TableSize";
+import { ColumnSettingType } from "../../interfaces/ColumnSettingType";
+import { PositionType } from "../../interfaces/PositionType";
+import { ToolBarProps } from "../../interfaces/ToolBarProps";
+import DndCheckbox from "./DndCheckbox";
 
 const StyledToolBar = styled.div`
   display: flex;
@@ -34,6 +35,27 @@ const Option = styled.div`
   justify-content: flex-end;
 `;
 
+const resortColumnsSettings = (
+  columnsSettings: ColumnSettingType[]
+): ColumnSettingType[] => {
+  let fixedLeftIndex = 0;
+  let noFixedIndex = 0;
+  const newArr = [];
+  columnsSettings.forEach((item) => {
+    if (!item.fixed) {
+      newArr.splice(noFixedIndex, 0, item);
+      noFixedIndex++;
+    } else if (item.fixed === "left") {
+      newArr.splice(fixedLeftIndex, 0, item);
+      fixedLeftIndex++;
+      noFixedIndex++;
+    } else {
+      newArr.push(item);
+    }
+  });
+  return newArr;
+};
+
 export const ToolBar = <T extends {}>({
   columns,
   columnSettings,
@@ -51,21 +73,37 @@ export const ToolBar = <T extends {}>({
       columnSettings
         .filter((columnSetting): boolean => !columnSetting.hidden)
         .map((columnSetting): string => `${columnSetting.key}`),
-    [columnSettings],
+    [columnSettings]
   );
 
-  const handleHover = useCallback(
-    (dragIndex: number, hoverIndex: number): void => {
-      onColumnSettingsChange(
-        update(columnSettings, {
-          $splice: [
-            [dragIndex, 1],
-            [hoverIndex, 0, columnSettings[dragIndex]],
-          ],
-        }),
-      );
+  const handleConfigsChange = useCallback(
+    (dragIndex: number, hoverIndex: number, fixed?: PositionType): void => {
+      if (fixed || fixed === false) {
+        // 设置固定列
+        const tempColumnSettings = [...columnSettings];
+        tempColumnSettings[dragIndex].fixed = fixed;
+        // 更新顺序，fixed 放到数组两边
+        const resortedColumnSettings = resortColumnsSettings(
+          tempColumnSettings
+        );
+        onColumnSettingsChange(resortedColumnSettings);
+      } else {
+        // 更新列顺序
+        if (!columnSettings[hoverIndex]?.fixed) {
+          onColumnSettingsChange(
+            resortColumnsSettings(
+              update(columnSettings, {
+                $splice: [
+                  [dragIndex, 1],
+                  [hoverIndex, 0, columnSettings[dragIndex]],
+                ],
+              })
+            )
+          );
+        }
+      }
     },
-    [columnSettings, onColumnSettingsChange],
+    [columnSettings, onColumnSettingsChange]
   );
 
   return (
@@ -77,7 +115,7 @@ export const ToolBar = <T extends {}>({
             <div key={index} style={{ marginRight: 8 }}>
               {action}
             </div>
-          ),
+          )
         )}
 
         {actions.length > 0 ? <Divider type="vertical" /> : null}
@@ -85,7 +123,11 @@ export const ToolBar = <T extends {}>({
         {options?.download ? (
           <div style={{ marginLeft: 8 }}>
             <Tooltip title="下载">
-              <DownloadOutlined spin={false} style={{ fontSize: 17 }} onClick={onDownload} />
+              <DownloadOutlined
+                spin={false}
+                style={{ fontSize: 17 }}
+                onClick={onDownload}
+              />
             </Tooltip>
           </div>
         ) : null}
@@ -94,13 +136,15 @@ export const ToolBar = <T extends {}>({
           <div style={{ marginLeft: 16 }}>
             <Dropdown
               overlay={
-                <Menu onClick={({ key }): void => onSizeChange(key as TableSize)}>
+                <Menu
+                  onClick={({ key }): void => onSizeChange(key as TableSize)}
+                >
                   <Menu.Item key={TableSize.LARGE}>默认</Menu.Item>
                   <Menu.Item key={TableSize.MIDDLE}>中等</Menu.Item>
                   <Menu.Item key={TableSize.SMALL}>紧凑</Menu.Item>
                 </Menu>
               }
-              trigger={['click']}
+              trigger={["click"]}
             >
               <Tooltip title="尺寸">
                 <ColumnHeightOutlined style={{ fontSize: 16 }} />
@@ -112,7 +156,11 @@ export const ToolBar = <T extends {}>({
         {options?.reload ? (
           <div style={{ marginLeft: 16 }}>
             <Tooltip title="刷新">
-              <SyncOutlined spin={false} style={{ fontSize: 16 }} onClick={onRefresh} />
+              <SyncOutlined
+                spin={false}
+                style={{ fontSize: 16 }}
+                onClick={onRefresh}
+              />
             </Tooltip>
           </div>
         ) : null}
@@ -130,8 +178,8 @@ export const ToolBar = <T extends {}>({
                           (columnSetting): ColumnSettingType => ({
                             ...columnSetting,
                             hidden: value.indexOf(`${columnSetting.key}`) < 0,
-                          }),
-                        ),
+                          })
+                        )
                       );
                     }}
                   >
@@ -142,11 +190,16 @@ export const ToolBar = <T extends {}>({
                             index={index}
                             key={item.key}
                             value={item.key}
-                            onHover={handleHover}
+                            fixed={item?.fixed}
+                            onConfigsChange={handleConfigsChange}
                           >
-                            {columns.find((column): boolean => column.key === item.key)?.title}
+                            {
+                              columns.find(
+                                (column): boolean => column.key === item.key
+                              )?.title
+                            }
                           </DndCheckbox>
-                        ),
+                        )
                       )}
                     </DndProvider>
                   </Checkbox.Group>
