@@ -33,14 +33,51 @@ export function useColumnSettingsStorage<T>(
   );
 
   const columnSettings = useMemo((): ColumnSettingType[] => {
+    if (localStorageValue?.length !== columns.length) {
+      return [
+        ...columns.map(
+          (column): ColumnSettingType => ({
+            key: String(column?.key),
+            hidden: !!column.hidden,
+            width: Number(column?.width) || 100,
+            fixed: column?.fixed || false,
+          })
+        ),
+      ];
+    }
+
+    let isConfigChanged = false;
+
+    // 判断代码的 key 是否更新
+    for (const value of localStorageValue) {
+      if (!columns.find((column): boolean => column.key === value.key)) {
+        isConfigChanged = true;
+        break;
+      }
+    }
+
+    if (isConfigChanged) {
+      return [
+        ...columns.map(
+          (column): ColumnSettingType => ({
+            key: String(column?.key),
+            hidden: !!column.hidden,
+            width: Number(column?.width) || 100,
+            fixed: column?.fixed || false,
+          })
+        ),
+      ];
+    }
+
     return uniqBy(
       [
         ...localStorageValue,
         ...columns.map(
           (column): ColumnSettingType => ({
-            key: column.key.toString(),
+            key: String(column?.key),
             hidden: !!column.hidden,
-            width: Number(column.width) || 140,
+            width: Number(column.width) || 100,
+            fixed: column.fixed || false,
           })
         ),
       ],
@@ -49,7 +86,7 @@ export function useColumnSettingsStorage<T>(
       (columnSetting): boolean =>
         !!columns.find((column): boolean => column.key === columnSetting.key)
     );
-  }, [columns, localStorageValue]);
+  }, [columns, localStorageValue, localStorageValue?.length]);
 
   const [state, setState] = useState<ColumnSettingType[]>(columnSettings);
 
