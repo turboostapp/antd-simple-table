@@ -13,7 +13,7 @@
     "prettier/standard"
   ],
   "parserOptions": {
-    "project": "tsconfig.json"
+    "project": ["tsconfig.json", "./.storybook/tsconfig.json"]
   },
   "plugins": ["react-hooks", "simple-import-sort"],
   "rules": {
