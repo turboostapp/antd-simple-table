@@ -11,6 +11,6 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["./src", "./stories"],
-  "exclude": ["node_modules"]
+  "include": ["./src"],
+  "exclude": ["node_modules", "./stories"]
 }
