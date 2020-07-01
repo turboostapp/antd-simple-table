@@ -1,7 +1,7 @@
 const path = require("path");
 module.exports = {
   stories: ["../stories/*.stories.tsx"],
-  addons: ["@storybook/addon-actions"],
+  addons: ["storybook-readme/register", "@storybook/addon-actions"],
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.less$/,
@@ -20,6 +20,11 @@ module.exports = {
     });
 
     config.module.rules.push({
+      test: /\.md$/,
+      loader: ["markdown-loader"],
+    });
+
+    config.module.rules.push({
       test: /\.(ts|tsx)$/,
       use: [
         {
@@ -28,13 +33,13 @@ module.exports = {
             configFile: path.resolve(__dirname, "./tsconfig.json"),
           },
         },
-        {
-          loader: require.resolve("react-docgen-typescript-loader"),
-        },
+        // {
+        //   loader: require.resolve("react-docgen-typescript-loader"),
+        // },
       ],
     });
 
-    config.resolve.extensions.push(".ts", ".tsx");
+    config.resolve.extensions.push(".ts", ".tsx", ".md", ".json");
 
     return config;
   },
