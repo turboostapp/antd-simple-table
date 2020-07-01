@@ -13,11 +13,13 @@ export default function withCopyable<T>(
           ...column,
           render: (text, record, index): ReactElement => (
             <Typography.Text
-              copyable={{ text }}
-              ellipsis={!!column.ellipsis}
+              copyable={{
+                text: String(text),
+              }}
               style={{
                 width: "100%",
               }}
+              ellipsis={!!column.ellipsis}
             >
               {column.render ? column.render(text, record, index) : text}
             </Typography.Text>

@@ -43,12 +43,12 @@ export default function withRenderByValueType<T>(
 ): SimpleColumnType<T>[] {
   return columns.map(
     (column): SimpleColumnType<T> => {
-      if (column.valueType) {
+      if (column?.valueType) {
         return {
           align: getAlign(column.valueType) ? "right" : "center",
           ...column,
           render: (text, record, index): ReactNode => {
-            return renderText(text, column.valueType, index, record);
+            return renderText(text, column?.valueType, index, record);
           },
         };
       }
