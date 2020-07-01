@@ -65,15 +65,21 @@ stories.add("FixedLeft", () => (
         key: "day",
         dataIndex: "day",
         width: 120,
+        ellipsis: true,
+        copyable: true,
         valueType: ValueType.DATE_TIME,
       },
       {
         title: "电子邮件",
         key: "email",
+        ellipsis: true,
         dataIndex: "email",
         width: 120,
         valueType: {
           type: ValueType.TAG,
+          onClick: (values, value, record, index) => {
+            console.log(values, value, record, index);
+          },
         },
       },
       {
@@ -81,7 +87,6 @@ stories.add("FixedLeft", () => (
         key: "test",
         dataIndex: "test",
         width: 120,
-        fixed: "right",
       },
       {
         title: "test1dasd",
@@ -89,10 +94,18 @@ stories.add("FixedLeft", () => (
         dataIndex: "test1",
         width: 120,
         fixed: "right",
+        render: () => {
+          return <span>啦啦啦</span>;
+        },
       },
     ]}
     dataSource={[
-      { day: 1215, email: ["da", "das"], test: "dasas", test1: "dsaad" },
+      {
+        day: 1215,
+        email: ["da", "das", "dassda", "dassa"],
+        test: "dasas",
+        test1: "dsaad",
+      },
       {
         day: 1215,
         email: "das",

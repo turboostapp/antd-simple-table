@@ -62,7 +62,7 @@ const renderTextByObject = <T, U>(
 
     case ValueType.TAG: {
       const { onClick } = value as TagValueObjectType<T>;
-      if (typeof text === "object") {
+      if (text instanceof Array) {
         return text.map((textItem, tagIndex) => {
           if (textItem) {
             return (
@@ -125,7 +125,7 @@ const renderText = <T, U>(
     if (typeof valueType === "function" && item) {
       const value = valueType(text, item, index);
       if (typeof value === "string") {
-        return renderText(text, valueType, index);
+        return renderText(text, valueType, index, item);
       }
       if (typeof value === "object") {
         return renderTextByObject(text, value, index, item);
@@ -187,7 +187,7 @@ const renderText = <T, U>(
        * 标签
        */
       case ValueType.TAG: {
-        if (typeof text === "object") {
+        if (text instanceof Array) {
           return text.map((value) =>
             value ? (
               <Tag
