@@ -34,7 +34,7 @@ const renderTextByObject = <T, U>(
         maximumFractionDigits: precision,
         minimumFractionDigits: precision,
       }).format(showSymbol ? tempText : Math.abs(tempText));
-      return `${showSymbol ? "+" : ""}${percentText}`;
+      return `${showSymbol && tempText >= 0 ? "+" : ""}${percentText}`;
     }
 
     case ValueType.MONEY: {
