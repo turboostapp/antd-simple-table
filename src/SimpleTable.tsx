@@ -22,6 +22,7 @@ import withEllipsis from "./utils/withEllipsis";
 import withHidden from "./utils/withHidden";
 import withRenderByValueType from "./utils/withRenderByValueType";
 import withResizable from "./utils/withResizable";
+import withTransformDataIndex from "./utils/withTransformDataIndex";
 
 const StyledSimpleTable = styled.div`
   .ant-table-content table {
@@ -71,6 +72,7 @@ export const SimpleTable = <T extends {}>({
     tempColumns = withColumnSettings(tempColumns, columnSettings);
     tempColumns = withResizable(tempColumns, columnSettings, setColumnSettings);
     tempColumns = withHidden(tempColumns);
+    tempColumns = withTransformDataIndex(tempColumns);
     tempColumns = withDeleteColumnWidth(tempColumns);
     tempColumns = withRenderByValueType(tempColumns);
 

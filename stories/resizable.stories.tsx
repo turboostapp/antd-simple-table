@@ -32,7 +32,7 @@ stories.add("FixedRight", () => (
       {
         title: "test",
         key: "test",
-        dataIndex: "test",
+        dataIndex: "test.names[0].age",
         width: 120,
       },
       {
@@ -44,8 +44,18 @@ stories.add("FixedRight", () => (
       },
     ]}
     dataSource={[
-      { day: 1215, email: ["da", "das"], test: "dasas", test1: "dsaad" },
-      { day: 1215, email: "das", test: "dasas", test1: "dsaad" },
+      {
+        day: 1215,
+        email: ["da", "das"],
+        test: { names: [{ age: 2 }] },
+        test1: "dsaad",
+      },
+      {
+        day: 1215,
+        email: "das",
+        test: { names: [{ age: 3 }] },
+        test1: "dsaad",
+      },
     ]}
   />
 ));
