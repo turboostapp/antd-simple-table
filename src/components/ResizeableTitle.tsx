@@ -2,10 +2,10 @@ import React, { ReactElement } from "react";
 import { Resizable } from "react-resizable";
 import styled from "styled-components";
 
-const StyledSpan = styled.span`
+const StyledSpan = styled.span<{ fixed?: string }>`
   position: absolute;
   z-index: 1;
-  right: 0;
+  ${(props): string => (props?.fixed === "right" ? "left" : "right")}: 0;
   bottom: 0;
 
   width: 10px;
@@ -22,7 +22,7 @@ const StyledTh = styled.th`
 `;
 
 const ResizeableTitle = (props): ReactElement => {
-  const { onResize, onResizeStop, width, ...restProps } = props;
+  const { onResize, onResizeStop, width, fixed, ...restProps } = props;
 
   if (!width) {
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -34,6 +34,7 @@ const ResizeableTitle = (props): ReactElement => {
       draggableOpts={{ enableUserSelectHack: false }}
       handle={
         <StyledSpan
+          fixed={fixed}
           onClick={(e) => {
             e.stopPropagation();
           }}
@@ -44,6 +45,7 @@ const ResizeableTitle = (props): ReactElement => {
       width={width}
       onResize={onResize}
       onResizeStop={onResizeStop}
+      resizeHandles={fixed === "right" ? ["w"] : ["e"]}
     >
       <StyledTh
         // eslint-disable-next-line react/jsx-props-no-spreading
