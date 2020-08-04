@@ -8,7 +8,6 @@ import Papa from "papaparse";
 import React, { ReactElement, useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 
-import ResizeableTitle from "./components/ResizeableTitle";
 import { ToolBar } from "./components/ToolBar";
 import { TableSize } from "./enums/TableSize";
 import { useColumnSettingsStorage } from "./hooks/useColumnSettingsStorage";
@@ -17,18 +16,14 @@ import { ToolBarOptions } from "./interfaces/ToolBarOptions";
 import { ToolBarProps } from "./interfaces/ToolBarProps";
 import withColumnSettings from "./utils/withColumnSettings";
 import withCopyable from "./utils/withCopyable";
-import withDeleteColumnWidth from "./utils/withDeleteColumnWidth";
 import withEllipsis from "./utils/withEllipsis";
 import withHidden from "./utils/withHidden";
 import withRenderByValueType from "./utils/withRenderByValueType";
-import withResizable from "./utils/withResizable";
 import withTransformDataIndex from "./utils/withTransformDataIndex";
 
 const StyledSimpleTable = styled.div`
   .ant-table-content table {
     table-layout: auto !important;
-    width: max-content !important;
-    min-width: 100%;
   }
 `;
 
@@ -70,26 +65,14 @@ export const SimpleTable = <T extends {}>({
   const interColumns = useMemo((): SimpleColumnType<T>[] => {
     let tempColumns: SimpleColumnType<T>[] = columns;
     tempColumns = withColumnSettings(tempColumns, columnSettings);
-    tempColumns = withResizable(tempColumns, columnSettings, setColumnSettings);
     tempColumns = withHidden(tempColumns);
     tempColumns = withTransformDataIndex(tempColumns);
-    tempColumns = withDeleteColumnWidth(tempColumns);
     tempColumns = withRenderByValueType(tempColumns);
-
     tempColumns = withCopyable(tempColumns);
     tempColumns = withEllipsis(tempColumns);
 
     return tempColumns;
   }, [columns, columnSettings, setColumnSettings]);
-
-  const components = useMemo(
-    () => ({
-      header: {
-        cell: ResizeableTitle,
-      },
-    }),
-    []
-  );
 
   /**
    *  .csv 下载
@@ -149,7 +132,6 @@ export const SimpleTable = <T extends {}>({
       <Table<T>
         {...props}
         columns={interColumns}
-        components={components}
         dataSource={dataSource}
         loading={loading}
         pagination={pagination}
