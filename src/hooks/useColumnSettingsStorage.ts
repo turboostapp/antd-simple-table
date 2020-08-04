@@ -39,7 +39,6 @@ export function useColumnSettingsStorage<T>(
           (column): ColumnSettingType => ({
             key: String(column?.key),
             hidden: !!column.hidden,
-            width: Number(column?.width) || 100,
             fixed: column?.fixed || false,
           })
         ),
@@ -62,7 +61,6 @@ export function useColumnSettingsStorage<T>(
           (column): ColumnSettingType => ({
             key: String(column?.key),
             hidden: !!column.hidden,
-            width: Number(column?.width) || 100,
             fixed: column?.fixed || false,
           })
         ),
@@ -76,7 +74,6 @@ export function useColumnSettingsStorage<T>(
           (column): ColumnSettingType => ({
             key: String(column?.key),
             hidden: !!column.hidden,
-            width: Number(column.width) || 100,
             fixed: column.fixed || false,
           })
         ),

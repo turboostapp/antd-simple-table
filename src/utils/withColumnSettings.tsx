@@ -16,7 +16,6 @@ export default function withColumnSettings<T>(
       tempColumns.push({
         ...column,
         hidden: columnSetting.hidden,
-        width: columnSetting.width,
         fixed: columnSetting.fixed,
       });
   });
