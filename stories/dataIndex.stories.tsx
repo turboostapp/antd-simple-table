@@ -24,6 +24,7 @@ stories.add("twoDimensionalArray", () => (
         title: "email",
         key: "email",
         dataIndex: "email",
+        align: "center",
         width: 120,
         copyable: true,
       },
@@ -38,6 +39,7 @@ stories.add("twoDimensionalArray", () => (
         key: "shop",
         dataIndex: "shop.checkouts[0][0].time",
         valueType: ValueType.DATE_TIME,
+        width: 120,
       },
     ]}
     dataSource={[
@@ -53,7 +55,7 @@ stories.add("twoDimensionalArray", () => (
       },
       {
         day: 1593764382866,
-        email: "1764382866@gmail.com",
+        email: "",
         user: {
           users: [[{ name: "Tom" }], [{ name: "Tony" }]],
         },
