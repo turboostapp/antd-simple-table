@@ -11,19 +11,23 @@ export default function withCopyable<T>(
       if (column.copyable && column.dataIndex) {
         return {
           ...column,
-          render: (text, record, index): ReactElement => (
-            <Typography.Text
-              copyable={{
-                text: String(text),
-              }}
-              style={{
-                width: "100%",
-              }}
-              ellipsis={!!column.ellipsis}
-            >
-              {column.render ? column.render(text, record, index) : text}
-            </Typography.Text>
-          ),
+          render: (text, record, index): ReactElement => {
+            return (
+              text && (
+                <Typography.Text
+                  copyable={{
+                    text: String(text),
+                  }}
+                  style={{
+                    width: "100%",
+                  }}
+                  ellipsis={!!column.ellipsis}
+                >
+                  {column.render ? column.render(text, record, index) : text}
+                </Typography.Text>
+              )
+            );
+          },
         };
       }
 
