@@ -16,6 +16,7 @@
   - [✨ 特色功能](#-特色功能)
   - [📦 安装](#-安装)
   - [🔨 使用说明](#-使用说明)
+    - [示例](#示例)
     - [指定表格右上角功能键](#指定表格右上角功能键)
     - [保存为 Excel 文件到本地](#保存为-excel-文件到本地)
     - [刷新列表](#刷新列表)
@@ -29,10 +30,6 @@
       - [5. 开关](#5-开关)
 
 <!-- /TOC -->
-
-<center>
-  <a class="other-link" href="https://github.com/shadowolfapp/antd-simple-table" alt="https://github.com/shadowolfapp/antd-simple-table"><i class="fab fa-github-square fa-2x" ></i></a>
-</center>
 
 <br/>
 
@@ -62,6 +59,10 @@ yarn add antd-simple-table @ant-design/icons antd
 <br/>
 
 ## 🔨 使用说明
+
+### 示例
+
+您可以参考以下 storybook 精选示例，以了解 ant-simple-table 的工作方式: <https://antd-simple-table-b472afd.netlify.app>
 
 ### 指定表格右上角功能键
 
@@ -418,26 +419,3 @@ onChange 输出参数说明
 
 <br/>
 <br/>
-
-<!-- PROPS -->
-
-<head> 
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> 
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/v4-shims.js"></script>
-    <style>
-      .other-link,.other-link:hover,.other-link:active,.other-link:visited,.other-link:link,.other-link:focus{
-      -webkit-tap-highlight-color:rgba(0,0,0,0);
-      -webkit-tap-highlight-color: transparent;
-      outline:none;
-      background: none;
-      color: #555;
-      text-decoration: none;
-      margin: 5px;
-      }
-      .markdown-body{
-        margin: 10px !important;
-      }
-    </style> 
-</head> 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/
-css/all.css">
