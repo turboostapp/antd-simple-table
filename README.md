@@ -62,7 +62,7 @@ yarn add antd-simple-table @ant-design/icons antd
 
 ### 示例
 
-您可以参考以下 storybook 精选示例，以了解 ant-simple-table 的工作方式: <https://antd-simple-table-b472afd.netlify.app>
+&emsp; 您可以参考以下 storybook 精选示例，以了解 ant-simple-table 的工作方式: <https://antd-simple-table-b472afd.netlify.app>
 
 ### 指定表格右上角功能键
 
