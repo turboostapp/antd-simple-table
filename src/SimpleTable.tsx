@@ -33,7 +33,7 @@ export interface SimpleTableProps<T>
   columns: SimpleColumnType<T>[];
   id: string;
   name?: string;
-  options?: ToolBarOptions;
+  options?: ToolBarOptions | false;
   threshold?: number;
 }
 
@@ -72,7 +72,7 @@ export const SimpleTable = <T extends {}>({
     tempColumns = withEllipsis(tempColumns);
 
     return tempColumns;
-  }, [columns, columnSettings, setColumnSettings]);
+  }, [columns, columnSettings]);
 
   /**
    *  .csv 下载
@@ -117,17 +117,19 @@ export const SimpleTable = <T extends {}>({
 
   return (
     <StyledSimpleTable>
-      <ToolBar
-        columns={columns}
-        columnSettings={columnSettings}
-        options={options}
-        size={size}
-        toolBarRender={toolBarRender}
-        onColumnSettingsChange={setColumnSettings}
-        onDownload={handleDownload}
-        onRefresh={onRefresh}
-        onSizeChange={setSize}
-      />
+      {options && (
+        <ToolBar
+          columns={columns}
+          columnSettings={columnSettings}
+          options={options}
+          size={size}
+          toolBarRender={toolBarRender}
+          onColumnSettingsChange={setColumnSettings}
+          onDownload={handleDownload}
+          onRefresh={onRefresh}
+          onSizeChange={setSize}
+        />
+      )}
 
       <Table<T>
         {...props}

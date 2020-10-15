@@ -4,13 +4,14 @@ import React from "react";
 
 import { SimpleTable, ValueType } from "../src";
 
-const stories = storiesOf("数据索引", module);
+const stories = storiesOf("功能图标", module);
 
 stories.addDecorator(withInfo);
 
-stories.add("多维数组", () => (
+stories.add("无功能图标", () => (
   <SimpleTable
-    id="right"
+    id="emptyOptions"
+    options={false}
     columns={[
       {
         title: "日期",

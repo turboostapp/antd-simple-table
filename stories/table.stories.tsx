@@ -5,7 +5,7 @@ import { addReadme } from "storybook-readme";
 import { SimpleTable, ValueType } from "../src";
 import Readme from "./doc.md";
 
-const stories = storiesOf("Base", module);
+const stories = storiesOf("基础示例", module);
 
 stories.addDecorator(addReadme);
 stories.addParameters({
@@ -21,7 +21,7 @@ stories.addParameters({
   },
 });
 
-stories.add("example", () => (
+stories.add("基础示例", () => (
   <SimpleTable
     id="example"
     columns={[

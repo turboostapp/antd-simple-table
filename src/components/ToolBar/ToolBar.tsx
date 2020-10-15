@@ -120,7 +120,7 @@ export const ToolBar = <T extends {}>({
 
         {actions.length > 0 ? <Divider type="vertical" /> : null}
 
-        {options?.download ? (
+        {options && options?.download ? (
           <div style={{ marginLeft: 8 }}>
             <Tooltip title="下载">
               <DownloadOutlined
@@ -132,7 +132,7 @@ export const ToolBar = <T extends {}>({
           </div>
         ) : null}
 
-        {options?.size ? (
+        {options && options?.size ? (
           <div style={{ marginLeft: 16 }}>
             <Dropdown
               overlay={
@@ -153,7 +153,7 @@ export const ToolBar = <T extends {}>({
           </div>
         ) : null}
 
-        {options?.reload ? (
+        {options && options?.reload ? (
           <div style={{ marginLeft: 16 }}>
             <Tooltip title="刷新">
               <SyncOutlined
@@ -165,7 +165,7 @@ export const ToolBar = <T extends {}>({
           </div>
         ) : null}
 
-        {options?.setting ? (
+        {options && options?.setting ? (
           <div style={{ marginLeft: 16 }}>
             <Tooltip title="列设置">
               <Popover
