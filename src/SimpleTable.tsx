@@ -72,7 +72,7 @@ export const SimpleTable = <T extends {}>({
     tempColumns = withEllipsis(tempColumns);
 
     return tempColumns;
-  }, [columns, columnSettings, setColumnSettings]);
+  }, [columns, columnSettings]);
 
   /**
    *  .csv 下载
@@ -117,17 +117,19 @@ export const SimpleTable = <T extends {}>({
 
   return (
     <StyledSimpleTable>
-      <ToolBar
-        columns={columns}
-        columnSettings={columnSettings}
-        options={options}
-        size={size}
-        toolBarRender={toolBarRender}
-        onColumnSettingsChange={setColumnSettings}
-        onDownload={handleDownload}
-        onRefresh={onRefresh}
-        onSizeChange={setSize}
-      />
+      {Object.keys(options).length > 0 && (
+        <ToolBar
+          columns={columns}
+          columnSettings={columnSettings}
+          options={options}
+          size={size}
+          toolBarRender={toolBarRender}
+          onColumnSettingsChange={setColumnSettings}
+          onDownload={handleDownload}
+          onRefresh={onRefresh}
+          onSizeChange={setSize}
+        />
+      )}
 
       <Table<T>
         {...props}
