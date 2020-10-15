@@ -8,10 +8,10 @@ const stories = storiesOf("功能图标", module);
 
 stories.addDecorator(withInfo);
 
-stories.add("空功能图标", () => (
+stories.add("无功能图标", () => (
   <SimpleTable
     id="emptyOptions"
-    options={{}}
+    options={false}
     columns={[
       {
         title: "日期",

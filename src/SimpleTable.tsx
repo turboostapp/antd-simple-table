@@ -33,7 +33,7 @@ export interface SimpleTableProps<T>
   columns: SimpleColumnType<T>[];
   id: string;
   name?: string;
-  options?: ToolBarOptions;
+  options?: ToolBarOptions | false;
   threshold?: number;
 }
 
@@ -117,7 +117,7 @@ export const SimpleTable = <T extends {}>({
 
   return (
     <StyledSimpleTable>
-      {Object.keys(options).length > 0 && (
+      {options && (
         <ToolBar
           columns={columns}
           columnSettings={columnSettings}
