@@ -55,6 +55,7 @@
     "@storybook/addon-info": "^5.3.18",
     "@storybook/addon-options": "^5.3.18",
     "@storybook/react": "^5.3.18",
+    "@superboost/browserslist-config": "^1.0.0",
     "@types/file-saver": "^2.0.1",
     "@types/lodash": "^4.14.152",
     "@types/papaparse": "^5.0.3",
@@ -115,5 +116,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "browserslist": [
+    "extends @superboost/browserslist-config"
+  ]
 }
