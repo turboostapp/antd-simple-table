@@ -31,13 +31,13 @@ stories.add("无功能图标", () => (
       {
         title: "user",
         key: "user",
-        dataIndex: "user.users[0][0].name",
+        dataIndex: ["user", "users", 0, 0, "name"],
         width: 120,
       },
       {
         title: "checkoutTime",
         key: "shop",
-        dataIndex: "shop.checkouts[0][0].time",
+        dataIndex: ["shop", "checkouts", 0, 0, "time"],
         valueType: ValueType.DATE_TIME,
         width: 120,
       },

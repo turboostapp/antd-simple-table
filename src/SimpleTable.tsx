@@ -19,7 +19,6 @@ import withCopyable from "./utils/withCopyable";
 import withEllipsis from "./utils/withEllipsis";
 import withHidden from "./utils/withHidden";
 import withRenderByValueType from "./utils/withRenderByValueType";
-import withTransformDataIndex from "./utils/withTransformDataIndex";
 
 const StyledSimpleTable = styled.div`
   .ant-table-content table {
@@ -66,7 +65,6 @@ export const SimpleTable = <T extends {}>({
     let tempColumns: SimpleColumnType<T>[] = columns;
     tempColumns = withColumnSettings(tempColumns, columnSettings);
     tempColumns = withHidden(tempColumns);
-    tempColumns = withTransformDataIndex(tempColumns);
     tempColumns = withRenderByValueType(tempColumns);
     tempColumns = withCopyable(tempColumns);
     tempColumns = withEllipsis(tempColumns);
