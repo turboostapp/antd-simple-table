@@ -120,7 +120,7 @@ stories.add("基础示例", () => (
         money: 100,
         number: 159357.4128917,
         percent: 0.97,
-        tags: ["2020-7-1", "管理员"],
+        tags: ["tags1", "tags2", "tag3", "tags4", "tags5"],
         currencyCode: "USD",
       },
       {
