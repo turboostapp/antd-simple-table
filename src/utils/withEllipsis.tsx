@@ -14,17 +14,17 @@ export default function withEllipsis<T>(
           ellipsis: false,
           render: (text, record, index): ReactElement =>
             text ? (
-              <Tooltip placement="top" title={String(text)}>
-                <Typography.Text
-                  ellipsis
-                  title={text}
-                  style={{
-                    width: column?.width,
-                  }}
-                >
+              <Typography.Text
+                ellipsis
+                title={text}
+                style={{
+                  width: column?.width,
+                }}
+              >
+                <Tooltip placement="top" title={String(text)}>
                   {column.render ? column.render(text, record, index) : text}
-                </Typography.Text>
-              </Tooltip>
+                </Tooltip>
+              </Typography.Text>
             ) : (
               <>{column.render ? column.render(text, record, index) : text}</>
             ),

@@ -13,9 +13,11 @@ const StyledPushpinOutlined = styled(
     <PushpinOutlined {...props} className={className} />
   )
 )`
-  transform: ${(props) => (props?.transform ? "rotate(-90deg)" : "")};
-  color: ${(props) => (props?.fixed ? "red" : "")};
   margin: 0 0.5rem;
+
+  transform: ${(props) => (props?.transform ? "rotate(-90deg)" : "")};
+
+  color: ${(props) => (props?.fixed ? "red" : "")};
 `;
 
 const StyledDndCheckbox = styled.div`
@@ -24,6 +26,7 @@ const StyledDndCheckbox = styled.div`
 
 const StyledSpan = styled.span`
   float: right;
+
   margin-left: 1.5rem;
 `;
 
@@ -122,20 +125,24 @@ const DndCheckbox: React.FC<DndCheckboxProps> = ({
           placement="top"
           title={fixed === "left" ? "取消固定" : "固定到左边"}
         >
-          <StyledPushpinOutlined
-            fixed={fixed === "left"}
-            onClick={(): void => setFixedStatus("left")}
-          />
+          <>
+            <StyledPushpinOutlined
+              fixed={fixed === "left"}
+              onClick={(): void => setFixedStatus("left")}
+            />
+          </>
         </Tooltip>
         <Tooltip
           placement="top"
           title={fixed === "right" ? "取消固定" : "固定到右边"}
         >
-          <StyledPushpinOutlined
-            transform
-            fixed={fixed === "right"}
-            onClick={(): void => setFixedStatus("right")}
-          />
+          <>
+            <StyledPushpinOutlined
+              transform
+              fixed={fixed === "right"}
+              onClick={(): void => setFixedStatus("right")}
+            />
+          </>
         </Tooltip>
       </StyledSpan>
     </StyledDndCheckbox>

@@ -158,7 +158,7 @@ export const ToolBar = <T extends {}>({
             <Tooltip title="刷新">
               <SyncOutlined
                 spin={false}
-                style={{ fontSize: 16 }}
+                style={{ fontSize: 16, cursor: "pointer" }}
                 onClick={onRefresh}
               />
             </Tooltip>
